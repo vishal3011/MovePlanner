@@ -15,14 +15,16 @@ function loadData() {
     var $streetStr = $('#street').val()
     var $cityStr = $('#city').val()
     var $value = $streetStr + "," + $cityStr ;
-    console.log($value);
+
+    $greeting.text('So, you want to live at' + $value + '?');
+    // console.log($value);
     var $address = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location="+ $value;
-    console.log($address)
-    console.log($streetStr);
-    console.log($cityStr);
+    // console.log($address)
+    // console.log($streetStr);
+    // console.log($cityStr);
     var $bgimg = "\"bgimg\""
     var $total = '\'<img class =' + $bgimg+" src=" + "\"" + $address + "\"" +">\'";
-    console.log($total);
+    // console.log($total);
     $body.append($total);
 
     // YOUR CODE GOES HERE!

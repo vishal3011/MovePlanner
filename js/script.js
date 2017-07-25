@@ -38,6 +38,8 @@ function loadData() {
             var article = articles[i];
             $nytElem.append('<li class = "article">' + '<a href="'+ article.web_url+'">'+article.headline.main+'</a>'+ '<p>' + article.snippet + '</p>' + '</li>');
         };
+    }).error(function(e){
+        $nytHeaderElem.text('NY Times Articles Couldn\'t be loaded');
     });
 
 // var resp = $.ajax({
@@ -50,6 +52,24 @@ function loadData() {
 // });
 
 // console.log(resp);
+
+    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search='+ $cityStr + '&format=json&callback=wikiCallback';
+    console.log(wikiUrl);
+
+    $.ajax({
+        url: wikiUrl,
+        datatype: "jsonp",
+        success: function ( response ) {
+            var articleList = response[1];
+            for (var i = 0; i<articleList.length; i++){
+                articleStr = articleList[i];
+                var wurl = 'http://en.wikipedia.org/wiki/'+ articleStr;
+                console.log(wurl);
+                $wikiElem.append('<li><a href="'+ wurl + '">'+ articleStr +'</a></li>');
+
+            };
+        }
+    });
 
 
 
